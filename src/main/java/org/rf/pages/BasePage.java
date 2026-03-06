@@ -18,7 +18,7 @@ public class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         this.actions = new Actions(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // daha güvenli bekleme
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
         PageFactory.initElements(driver, this);
     }
 

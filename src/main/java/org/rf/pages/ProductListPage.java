@@ -15,7 +15,7 @@ public class ProductListPage extends BasePage{
     WebElement size1;
     @FindBy(xpath = "//*[@id=\"single-search-result\"]/div/div/div/div[2]/div/div[3]/div[2]/div/div[2]/div[8]/label/span[1]")
     WebElement size2;
-    @FindBy(xpath =     "//a[@data-product-index=0]")
+    @FindBy(xpath =     "//a[@data-product-index=1]")
     WebElement firstProduct;
     @FindBy(className = "web-search-result-header")
     WebElement result;

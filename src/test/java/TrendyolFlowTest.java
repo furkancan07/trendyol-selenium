@@ -31,10 +31,43 @@ public class TrendyolFlowTest extends BaseTest {
         String expected="Armani";
         Assert.assertTrue(text.contains(expected));
     }
-    @Test(dependsOnMethods = "test05_isThisProduct", priority = 5,description = "")
+    @Test(priority = 5,description = "")
     public void test06_() {
         listPage.goToFirstProduct();
     }
+    @Test(priority = 6,description = "Ürün Bilgilerini Alma")
+    public void test07_findProductInformation() {
+        productPage.test07();
+    }
+    @Test(priority = 7,description = "Pdf Oluşturma")
+    public void test08_pdfGenerate() {
+        productPage.pdfGenerate();
+    }
+    @Test(priority = 8,description = "Email Gönderme")
+    public void test09_sentToEmail() {
+        productPage.sendEmail();
+    }
+    @Test(priority = 9,description = "Sepete Ekleme")
+    public void test10_addCart() {
+        productPage.addCart();
+    }
+    @Test(priority = 10,description = "Sepet Sayfasına gitme")
+    public void test11_goToCartPage() {
+        productPage.goToCartPage();
+
+    }
+    @Test(priority = 11,description = "Ürün Sayısını Arttırma")
+    public void test12_increaseProductCount() {
+       cartPage.increaseProductCount();
+       Assert.assertEquals(cartPage.getCartCount(),"3");
+    }
+    @Test(priority = 12,description = "Ürünü Sepetten Silme")
+    public void test13_deleteProductFromCart() {
+        cartPage.deleteProductFromCart();
+        Assert.assertTrue(cartPage.getRemovedItem().contains("ürünü sepetinden kaldırıldı."));
+    }
+
+
 
 
 }

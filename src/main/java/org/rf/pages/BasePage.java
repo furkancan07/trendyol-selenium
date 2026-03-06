@@ -51,4 +51,19 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         waitThreeSeconds();
     }
+
+    protected void switchToNewTab() {
+        String newTab = driver.getWindowHandles().stream().reduce((a, b) -> b).get();
+        driver.switchTo().window(newTab);
+    }
+
+    protected void switchToFirstTab() {
+        String firstTab = driver.getWindowHandles().stream().findFirst().get();
+        driver.switchTo().window(firstTab);
+    }
+
+    protected void closeCurrentTabAndGoBack() {
+        driver.close();
+        switchToFirstTab();
+    }
 }

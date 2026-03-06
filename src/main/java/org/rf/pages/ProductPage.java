@@ -1,22 +1,39 @@
 package org.rf.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.rf.utils.PdfUtil;
 import org.rf.utils.Product;
 
+import java.time.Duration;
 import java.util.List;
 
 public class ProductPage extends BasePage {
-    @FindBy(xpath = "//*[@id=\"widget-list-v2\"]/div[1]/div[5]/div/div[2]/div/div/button/div")
+
+    @FindBy(xpath = "//h1[@data-testid='product-title']")
     WebElement title;
-    @FindBy(xpath = "/html/body/main/div/div[2]/div[1]/div/div[2]/section[2]/div[2]/div/div/div[1]/a")
+    @FindBy(css = "a.product-title-brand-name-anchor")
     WebElement username;
-    @FindBy(xpath = "/html/body/main/div/div[2]/div[1]/div/div[2]/section[1]/div[4]/div/div[1]/span/span")
-    WebElement size;
-    @FindBy(xpath = "/html/body/div[3]/div/div[1]/div/div[1]/div/div/div[2]/div[2]")
+
+    @FindBy(css = "span.discounted")
     WebElement price;
+
+    @FindBy(css = "span.selected-variant")
+    WebElement size;
+    @FindBy(className = "onboarding__default-renderer-primary-button")
+    WebElement acceptButton;
+    @FindBy(className = "basket-wrapper-link")
+    WebElement cartButton;
+    @FindBy(className = "add-to-cart-button-text")
+    WebElement addToCartButton;
+
+    Product product;
     public ProductPage(WebDriver driver) {
         super(driver);
     }
@@ -32,9 +49,25 @@ public class ProductPage extends BasePage {
     private String getPrice() {
         return price.getText();
     }*/
-
-    public Product findProductInfo(){
-        return null;
+   public void test07() {
+       switchToNewTab();
+       clickElementWhenClickable(acceptButton);
+       product=findProductInfo();
+       System.out.println(product.toString());
+       waitThreeSeconds();
+   }
+   public void pdfGenerate() {
+       PdfUtil.createProductPdf(product,"output/product.pdf");
+   }
+    private Product findProductInfo(){
+        waitForPageLoad();
+        return Product.builder().
+                title(title.getText()).
+                username(username.getText()).
+                size(size.getText()).
+                price(price.getText()).
+                information(getAllProductFeatures()).
+                build();
     }
 
     private String getAllProductFeatures() {
@@ -66,4 +99,16 @@ public class ProductPage extends BasePage {
         return allText.toString();
     }
 
+    public void addCart() {
+       clickElementWhenClickable(addToCartButton);
+       waitThreeSeconds();
+    }
+
+    public void sendEmail() {
+    }
+
+    public void goToCartPage() {
+       clickElementWhenClickable(cartButton);
+
+    }
 }

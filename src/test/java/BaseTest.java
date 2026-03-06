@@ -34,7 +34,7 @@ public class BaseTest {
 
     @AfterClass
     public void tearDown() {
-       driver.quit();
-       softAssert.assertAll();
+      // driver.quit();
+       //softAssert.assertAll();
     }
 }

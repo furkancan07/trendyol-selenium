@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.rf.utils.MailUtil;
 import org.rf.utils.PdfUtil;
 import org.rf.utils.Product;
 
@@ -105,6 +106,8 @@ public class ProductPage extends BasePage {
     }
 
     public void sendEmail() {
+        MailUtil.sendPdfMail("output/product.pdf");
+        waitThreeSeconds();
     }
 
     public void goToCartPage() {

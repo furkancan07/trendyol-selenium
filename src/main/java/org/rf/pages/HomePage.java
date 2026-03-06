@@ -16,8 +16,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"widget-list-v2\"]/div[1]/div[5]/div/div[1]/div/p")
     WebElement discover;
 
-    @FindBy(xpath = "//img[contains(@alt,'Erkek Giyim')]/ancestor::a")
-    WebElement menClothingCategory;
+
 
     @FindBy(xpath = "//*[@id=\"single-search-result\"]/div/div/div/div[1]/div[1]/div")
     WebElement search;
@@ -50,7 +49,7 @@ public class HomePage extends BasePage {
                 clickElementWhenClickable(menClothingCategory);
                 break;
             } catch (TimeoutException e) {
-                // next arrow'ı her seferinde bul
+
                 WebElement nextArrow = driver.findElement(By.xpath("/html/body/main/div[1]/div[1]/div[5]/div/div[2]/div/div/button/div"));
                 nextArrow.click();
             }
@@ -61,7 +60,7 @@ public class HomePage extends BasePage {
         return search.getText();
     }
 
-
+//button[@data-direction="right"@data-gradient="true"]
 
 
 
